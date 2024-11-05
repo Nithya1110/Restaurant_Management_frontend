@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions,MenuItem, Select, InputLabel, FormControl, Snackbar, Typography} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import { getCategories, deleteCategory } from '../services/api';
-import CustomButton from '../elements_components/custom_button';
+import { getCategories, deleteCategory } from '../../services/api';
+import CustomButton from '../elements/custom_button';
 
 export default function DeleteCategoryDialog({ open, onClose }) {
     const [categories, setCategories] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card,CardContent,CardActions,Typography,FormControlLabel,Switch} from '@mui/material';
-import { updateMenuItem } from '../services/api';
-import CustomButton from '../elements_components/custom_button';
+import { updateMenuItem } from '../../services/api';
+import CustomButton from '../elements/custom_button';
 
 export default function MenuCard ({item,onEdit,onDelete,isStaff}){  
     

@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MuiAlert from '@mui/material/Alert';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import CustomButton from '../elements_components/custom_button';
+import CustomButton from '../elements/custom_button';
 
 const offers = [
     {

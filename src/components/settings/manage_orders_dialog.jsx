@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogTitle, DialogContent, Checkbox, FormControlLabel, Snackbar, Box } from '@mui/material';
-import CustomButton from '../elements_components/custom_button';
+import CustomButton from '../elements/custom_button';
 import MuiAlert from '@mui/material/Alert';
-import { getCategories } from '../services/api';
+import { getCategories } from '../../services/api';
 
 export default function ManageOrdersDialog({ open, onClose }) {
     const [acceptOrders, setAcceptOrders] = useState(false);

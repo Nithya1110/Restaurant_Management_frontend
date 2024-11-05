@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemIcon, ListItemText, Typography, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { People, Category, ShoppingCart, Inventory,} from '@mui/icons-material';
-import AddStaffStepper from '../settings_components/addstaff_stepper_dialog';
-import EditStaffDialog from '../settings_components/editstaff_dialog';
-import DeleteStaffDialog from '../settings_components/deletestaff_dialog';
-import ManageStockDialog from '../settings_components/manage_stock_dialog'; 
-import ManageOrdersDialog from '../settings_components/manage_orders_dialog';
-import AddCategoryDialog from '../settings_components/addcategory_dialog';
-import EditCategoryDialog from '../settings_components/editcategory_dialog';
-import DeleteCategoryDialog from '../settings_components/deletecategory_dialog';
+import AddStaffStepper from '../settings/addstaff_stepper_dialog';
+import EditStaffDialog from '../settings/editstaff_dialog';
+import DeleteStaffDialog from '../settings/deletestaff_dialog';
+import ManageStockDialog from '../settings/manage_stock_dialog'; 
+import ManageOrdersDialog from '../settings/manage_orders_dialog';
+import AddCategoryDialog from '../settings/addcategory_dialog';
+import EditCategoryDialog from '../settings/editcategory_dialog';
+import DeleteCategoryDialog from '../settings/deletecategory_dialog';
 
 export default function SettingsDialog({ open, onClose }) {
     const [openNestedDialog, setOpenNestedDialog] = useState(null);

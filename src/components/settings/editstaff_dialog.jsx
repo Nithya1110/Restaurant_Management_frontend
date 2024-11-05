@@ -1,6 +1,6 @@
 import React, { useState,} from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, Box, Snackbar, Rating, Typography } from '@mui/material';
-import CustomButton from '../elements_components/custom_button';
+import CustomButton from '../elements/custom_button';
 import MuiAlert from '@mui/material/Alert';
 
 // Mock staff data

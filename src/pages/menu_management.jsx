@@ -2,10 +2,10 @@ import React,{ useState, useEffect }  from 'react';
 import {Grid2,Container, Typography, Box,Dialog, DialogTitle, DialogActions,Snackbar } from '@mui/material'; 
 import MuiAlert from '@mui/material/Alert';
 import { getMenuItem,getCategories, createMenuItem, updateMenuItem, deleteMenuItem } from '../services/api';  // Axios API call 
-import MenuCard from '../menu_components/menucard';   // Component to display individual menu items 
+import MenuCard from '../components/menu/menucard';   // Component to display individual menu items 
 import AddIcon from '@mui/icons-material/Add'; // Import the Add icon 
-import AddItemDialog from '../menu_components/additem_dialog';
-import CustomButton from '../elements_components/custom_button';
+import AddItemDialog from '../components/menu/additem_dialog';
+import CustomButton from '../components/elements/custom_button';
 
 
 export default function MenuManagement() {   

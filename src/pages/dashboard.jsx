@@ -1,11 +1,11 @@
 import { Box,Container,Typography,Grid2, Paper, } from '@mui/material';
-import OverviewCard from '../dashboard_components/overview_card';
-import OrdersTable from '../dashboard_components/orders_table';
-import OffersAccordion from '../dashboard_components/offers_accordian';
-import TopSellingTabs from '../dashboard_components/top_selling_tabs';
-import SalesBarChart from '../dashboard_components/sales_bargraph';
-import CategoryPieChart from '../dashboard_components/category_piechart';
-import CustomerFeedback from '../dashboard_components/customer_feedback';
+import OverviewCard from '../components/dashboard/overview_card';
+import OrdersTable from '../components/dashboard/orders_table';
+import OffersAccordion from '../components/dashboard/offers_accordian';
+import TopSellingTabs from '../components/dashboard/top_selling_tabs';
+import SalesBarChart from '../components/dashboard/sales_bargraph';
+import CategoryPieChart from '../components/dashboard/category_piechart';
+import CustomerFeedback from '../components/dashboard/customer_feedback';
 
 export default function Dashboard() {  
     

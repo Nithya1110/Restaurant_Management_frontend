@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { Box } from '@mui/material';
-import Header from './layout_components/header';  // Import the Header component
-import Sidebar from './layout_components/sidebar';  // Import the Sidebar component 
+import Header from './components/layout/header';  // Import the Header component
+import Sidebar from './components/layout/sidebar';  // Import the Sidebar component 
 
 const drawerWidth = 240; // Width of the sidebar
 

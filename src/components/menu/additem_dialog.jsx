@@ -1,5 +1,6 @@
 import React, { useState,useEffect, useMemo } from 'react'
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Select, MenuItem, FormControl, InputLabel, Switch,FormControlLabel,Typography,} from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Select, MenuItem, FormControl, InputLabel, Switch,FormControlLabel,Typography,} from '@mui/material';
+import CustomButton from '../elements/custom_button';
 
 export default function AddItemDialog ({open,onClose,categories,initialData,isStaff,onAddItem}) {   
 
@@ -160,8 +161,8 @@ export default function AddItemDialog ({open,onClose,categories,initialData,isSt
                      sx={{ marginTop: 2 }}
                     />
                     <DialogActions sx={{ justifyContent: 'space-between', marginTop: 2 }}>
-                    <Button onClick={onClose} size='small'sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                    <Button  type='submit'size='small'sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>{initialData?'Update':'Submit'}</Button>  
+                    <CustomButton onClick={onClose} size='small'sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                    <CustomButton  type='submit'size='small'sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>{initialData?'Update':'Submit'}</CustomButton>  
                     </DialogActions>
                 </form>
             </DialogContent> 

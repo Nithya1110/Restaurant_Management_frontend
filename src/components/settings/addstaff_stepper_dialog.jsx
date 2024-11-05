@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { Dialog, DialogTitle, DialogContent, Stepper, Step, StepLabel,TextField, Snackbar,Rating,Box,Typography} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
-import CustomButton from '../elements_components/custom_button';
+import CustomButton from '../elements/custom_button';
 
 const steps = ['Basic Info', 'Personal Info', 'Job Info'];
 

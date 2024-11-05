@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from 'react';
 import {Dialog, DialogTitle,DialogContent,DialogActions, TextField, MenuItem, InputAdornment, IconButton, Snackbar } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import CustomButton from '../elements_components/custom_button';
+import CustomButton from '../elements/custom_button';
 import MuiAlert from '@mui/material/Alert';
-import { getUsersByRole,updateUserDetails } from '../services/api';
+import { getUsersByRole,updateUserDetails } from '../../services/api';
 
 export default function ManageAccountDialog({ open, onClose }) {
   const [user, setUser] = useState(null);   // Define user state with its setter  
