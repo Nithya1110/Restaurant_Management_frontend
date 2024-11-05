@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
-import {Button,Dialog, DialogTitle,DialogContent,DialogActions, TextField, MenuItem, InputAdornment, IconButton, Snackbar } from '@mui/material';
+import {Dialog, DialogTitle,DialogContent,DialogActions, TextField, MenuItem, InputAdornment, IconButton, Snackbar } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import CustomButton from '../elements_components/custom_button';
 import MuiAlert from '@mui/material/Alert';
 import { getUsersByRole,updateUserDetails } from '../services/api';
 
@@ -207,7 +208,7 @@ export default function ManageAccountDialog({ open, onClose }) {
             </DialogContent>
             <DialogActions>
                 {isEditing ? (
-                    <Button
+                    <CustomButton
                         onClick={handleSave}
                         color="primary"
                         variant="contained"
@@ -217,9 +218,9 @@ export default function ManageAccountDialog({ open, onClose }) {
                         }}
                     >
                         Save
-                    </Button>
+                    </CustomButton>
                 ) : (
-                    <Button
+                    <CustomButton
                         onClick={handleEdit}
                         color="primary"
                         variant="contained"
@@ -229,14 +230,14 @@ export default function ManageAccountDialog({ open, onClose }) {
                         }}
                     >
                         Edit
-                    </Button>
+                    </CustomButton>
                 )}
-                <Button onClick={onClose} color="secondary" variant="contained" sx={{
+                <CustomButton onClick={onClose} color="secondary" variant="contained" sx={{
                             backgroundColor: 'secondary.main',
                             '&:hover': { backgroundColor: 'secondary.dark' },
                         }} >
                     Close
-                </Button>
+                </CustomButton>
             </DialogActions>
         </Dialog>
         {/* Snackbar for confirmation */}

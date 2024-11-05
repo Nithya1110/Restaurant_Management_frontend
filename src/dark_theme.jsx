@@ -151,7 +151,7 @@ const darkTheme = createTheme({
       },
       MuiOutlinedInput: {
         styleOverrides: {
-          root: {
+          root: { 
             '& fieldset': {
               borderColor: '#BBBBBB',  // Light gray outline by default
             },

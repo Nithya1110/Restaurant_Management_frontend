@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, Stepper, Step, StepLabel,TextField, Button, Snackbar,Rating,Box,Typography} from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Stepper, Step, StepLabel,TextField, Snackbar,Rating,Box,Typography} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import CustomButton from '../elements_components/custom_button';
 
 const steps = ['Basic Info', 'Personal Info', 'Job Info'];
 
@@ -167,12 +168,12 @@ export default function AddStaffStepper ({ open, onClose }) {
                 )} 
                 {/* Navigation Buttons */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Button disabled={activeStep === 0} onClick={handleBack}>
+                <CustomButton disabled={activeStep === 0} onClick={handleBack}>
                     Back
-                </Button> 
-                <Button onClick={handleNext}>
+                </CustomButton> 
+                <CustomButton onClick={handleNext}>
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>  
+                </CustomButton>  
                 </Box>
               </Box>
            </DialogContent>

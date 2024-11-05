@@ -1,7 +1,8 @@
 import axios from 'axios';
+import API_CONFIG from '../configs/api_config';
 
 const api = axios.create({
-    baseURL : 'http://127.0.0.1:8000/api/'     // Django backend URL
+    baseURL : API_CONFIG.BASE_URL,    // Using the base URL from the config
 });
 
 export const registerUser = (data) => api.post('register/', data);

@@ -1,10 +1,11 @@
 import React,{ useState, useEffect }  from 'react';
-import {Grid2,Container, Typography, Box, Button,Dialog, DialogTitle, DialogActions,Snackbar } from '@mui/material'; 
+import {Grid2,Container, Typography, Box,Dialog, DialogTitle, DialogActions,Snackbar } from '@mui/material'; 
 import MuiAlert from '@mui/material/Alert';
 import { getMenuItem,getCategories, createMenuItem, updateMenuItem, deleteMenuItem } from '../services/api';  // Axios API call 
-import MenuCard from '../components/menucard';   // Component to display individual menu items 
+import MenuCard from '../menu_components/menucard';   // Component to display individual menu items 
 import AddIcon from '@mui/icons-material/Add'; // Import the Add icon 
-import AddItemDialog from '../components/additem_dialog';
+import AddItemDialog from '../menu_components/additem_dialog';
+import CustomButton from '../elements_components/custom_button';
 
 
 export default function MenuManagement() {   
@@ -103,18 +104,18 @@ export default function MenuManagement() {
     setOpenSnackbar(false);
   };
 
-    return( 
+    return(  
       <>
         <Box sx={{marginTop:'16px'}}> 
           <Container style={{minWidth:'700px'}}  >     
             <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'16px',marginRight:'24px'}}>  
               <Typography variant='h1'sx={{flexGrow:2,padding:2}}>Restaurant Menu</Typography> 
-              <Button
+              <CustomButton
                 variant='contained' 
                 startIcon={<AddIcon/>}
                 sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}
                 onClick={()=>handleOpenDialog()}      // Open dialog for adding new item 
-              >Add Item</Button> 
+              >Add Item</CustomButton> 
             </Box>
             <Box sx={{marginBottom:'16px'}}>
             {categories.map((category)=>(
@@ -151,8 +152,8 @@ export default function MenuManagement() {
             <Dialog open={confirmOpen} onClose={handleCloseConfirm}>   
                 <DialogTitle>Are you sure, you want to delete {selectedItem?.name} ? This action cannot be undone.</DialogTitle>  
                 <DialogActions>
-                    <Button onClick={handleCloseConfirm} size='small'sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                    <Button onClick={handleDeleteItem} size='small'sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Confirm</Button>    
+                    <CustomButton onClick={handleCloseConfirm} size='small'sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                    <CustomButton onClick={handleDeleteItem} size='small'sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Confirm</CustomButton>    
                 </DialogActions>
                 <Snackbar
                 open={openSnackbar}

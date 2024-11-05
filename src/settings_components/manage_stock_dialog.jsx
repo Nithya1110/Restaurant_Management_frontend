@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Dialog,DialogTitle, DialogContent,TextField,Button,Box, Snackbar,Typography,} from '@mui/material';
+import { Dialog,DialogTitle, DialogContent,TextField,Box, Snackbar,Typography,} from '@mui/material';
+import CustomButton from '../elements_components/custom_button';
 import MuiAlert from '@mui/material/Alert';
 
 export default function ManageStockDialog({ open, onClose }) {
@@ -104,12 +105,12 @@ export default function ManageStockDialog({ open, onClose }) {
                         </Box>
                     ))}
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button variant="contained" onClick={handleEdit} disabled={isEditable} sx={{ mr: 1 }}>
+                        <CustomButton variant="contained" onClick={handleEdit} disabled={isEditable} sx={{ mr: 1 }}>
                             Edit
-                        </Button>
-                        <Button variant="contained" onClick={handleSave} disabled={!isEditable}>
+                        </CustomButton>
+                        <CustomButton variant="contained" onClick={handleSave} disabled={!isEditable}>
                             Save
-                        </Button>
+                        </CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog> 

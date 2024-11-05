@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, Checkbox, FormControlLabel, Button, Snackbar, Box } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, Checkbox, FormControlLabel, Snackbar, Box } from '@mui/material';
+import CustomButton from '../elements_components/custom_button';
 import MuiAlert from '@mui/material/Alert';
 import { getCategories } from '../services/api';
 
@@ -97,9 +98,9 @@ export default function ManageOrdersDialog({ open, onClose }) {
                         ))}
                     </Box>
                     <Box display="flex" justifyContent="flex-end">
-                        <Button variant="contained" color="primary" onClick={handleSave}>
+                        <CustomButton variant="contained" color="primary" onClick={handleSave}>
                             Save
-                        </Button>
+                        </CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog>

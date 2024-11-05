@@ -145,7 +145,7 @@ export default function Orders() {
                 overflow: 'auto',     // Add scrolling if necessary
                 margin: 'auto',       // Center the grid horizontally
                 position: 'relative', // Needed for the overlay
-            }}
+            }} 
           >
           {/* Overlay message when no orders are available */}    
           {filteredOrders.length===0 && (    
@@ -176,7 +176,7 @@ export default function Orders() {
             }}     
             sx={{
               marginBottom:'16px',
-              // Styling the DataGrid
+              // Styling the DataGrid 
               '& .super-app-theme--header': {
                 backgroundColor: 'secondary.main',
                 color:'text.primary',

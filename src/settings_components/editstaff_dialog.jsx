@@ -1,5 +1,6 @@
 import React, { useState,} from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, Button, Box, Snackbar, Rating, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, Box, Snackbar, Rating, Typography } from '@mui/material';
+import CustomButton from '../elements_components/custom_button';
 import MuiAlert from '@mui/material/Alert';
 
 // Mock staff data
@@ -74,8 +75,8 @@ export default function EditStaffDialog({ open, onClose }) {
                         helperText={error}
                     />
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button onClick={onClose} sx={{ mr: 1 }}>Cancel</Button>
-                        <Button variant="contained" onClick={handleIDSubmit}>Submit</Button>
+                        <CustomButton onClick={onClose} sx={{ mr: 1 }}>Cancel</CustomButton>
+                        <CustomButton variant="contained" onClick={handleIDSubmit}>Submit</CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog>
@@ -146,8 +147,8 @@ export default function EditStaffDialog({ open, onClose }) {
                         size="large"
                     />
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button onClick={handleCloseDetailsDialog} sx={{mr:1,backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                        <Button variant="contained" onClick={handleSave} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</Button>
+                        <CustomButton onClick={handleCloseDetailsDialog} sx={{mr:1,backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                        <CustomButton variant="contained" onClick={handleSave} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog>

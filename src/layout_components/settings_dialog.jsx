@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, List, ListItem, ListItemIcon, ListItemText, Typography, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { People, Category, ShoppingCart, Inventory,} from '@mui/icons-material';
-import AddStaffStepper from './addstaff_stepper_dialog';
-import EditStaffDialog from './editstaff_dialog';
-import DeleteStaffDialog from './deletestaff_dialog';
-import ManageStockDialog from './manage_stock_dialog'; 
-import ManageOrdersDialog from './manage_orders_dialog';
-import AddCategoryDialog from './addcategory_dialog';
-import EditCategoryDialog from './editcategory_dialog';
-import DeleteCategoryDialog from './deletecategory_dialog';
+import AddStaffStepper from '../settings_components/addstaff_stepper_dialog';
+import EditStaffDialog from '../settings_components/editstaff_dialog';
+import DeleteStaffDialog from '../settings_components/deletestaff_dialog';
+import ManageStockDialog from '../settings_components/manage_stock_dialog'; 
+import ManageOrdersDialog from '../settings_components/manage_orders_dialog';
+import AddCategoryDialog from '../settings_components/addcategory_dialog';
+import EditCategoryDialog from '../settings_components/editcategory_dialog';
+import DeleteCategoryDialog from '../settings_components/deletecategory_dialog';
 
 export default function SettingsDialog({ open, onClose }) {
     const [openNestedDialog, setOpenNestedDialog] = useState(null);
@@ -99,7 +99,7 @@ export default function SettingsDialog({ open, onClose }) {
                     </Typography>
                     <RadioGroup value={selectedOptionCategory} onChange={handleOptionChangeCategory}>
                         <FormControlLabel value="addCategory" control={<Radio />} label="Add a Category" />
-                        <FormControlLabel value="editCategory" control={<Radio />} label="Edit Existing Category Details" />
+                        <FormControlLabel value="editCategory" control={<Radio />} label="Edit Existing Category " />
                         <FormControlLabel value="deleteCategory" control={<Radio />} label="Delete a Category" />
                     </RadioGroup>
                 </DialogContent>

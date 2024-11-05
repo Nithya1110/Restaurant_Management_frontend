@@ -9,7 +9,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // Page container with a blue gradient background
 const PageContainer = styled(Box)({
     height: '100vh',
-    display: 'flex',
+    display: 'flex', 
     justifyContent: 'center',
     alignItems: 'center',
     background: 'linear-gradient(135deg, #A6C5F7, #2A6FB0)',

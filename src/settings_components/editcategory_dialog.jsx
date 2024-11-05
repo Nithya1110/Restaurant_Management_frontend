@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button, MenuItem, Select, InputLabel, FormControl, Snackbar } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, MenuItem, Select, InputLabel, FormControl, Snackbar } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { getCategories, updateCategory } from '../services/api';
+import CustomButton from '../elements_components/custom_button';
 
 export default function EditCategoryDialog({ open, onClose }) {
     const [categories, setCategories] = useState([]);
@@ -66,8 +67,8 @@ export default function EditCategoryDialog({ open, onClose }) {
                     )}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                    <Button onClick={handleEditCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</Button>
+                    <CustomButton onClick={onClose} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                    <CustomButton onClick={handleEditCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</CustomButton>
                 </DialogActions>
             </Dialog>
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button,Snackbar, } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions,Snackbar, } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { createCategories } from '../services/api';
+import CustomButton from '../elements_components/custom_button';
 
 export default function AddCategoryDialog({ open, onClose }) {
     const [categoryName, setCategoryName] = useState('');
@@ -41,8 +42,8 @@ export default function AddCategoryDialog({ open, onClose }) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                <Button onClick={handleAddCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Add</Button>
+                <CustomButton onClick={onClose} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                <CustomButton onClick={handleAddCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Add</CustomButton>
             </DialogActions>
         </Dialog>
         {/* Snackbar Notification */}

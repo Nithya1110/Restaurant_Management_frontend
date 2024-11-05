@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, Button, Box, Snackbar, Typography,Divider } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, Box, Snackbar, Typography,Divider } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
+import CustomButton from '../elements_components/custom_button';
 
 // Mock staff data for validation
 const mockStaffData = [
@@ -58,8 +59,8 @@ export default function DeleteStaffDialog({ open, onClose }) {
                         helperText={error}
                     />
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button onClick={onClose} sx={{ mr: 1 }}>Cancel</Button>
-                        <Button variant="contained" onClick={handleIDSubmit}>Submit</Button>
+                        <CustomButton onClick={onClose} sx={{ mr: 1 }}>Cancel</CustomButton>
+                        <CustomButton variant="contained" onClick={handleIDSubmit}>Submit</CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog>
@@ -71,8 +72,8 @@ export default function DeleteStaffDialog({ open, onClose }) {
                     <Typography>Are you sure you want to delete <strong>{staffName}</strong>?</Typography>
                     <Divider/>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                        <Button onClick={handleCloseConfirmationDialog}sx={{mr:1,backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                        <Button variant="contained" color="error" onClick={handleDelete} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Delete</Button>
+                        <CustomButton onClick={handleCloseConfirmationDialog}sx={{mr:1,backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                        <CustomButton variant="contained" color="error" onClick={handleDelete} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Delete</CustomButton>
                     </Box>
                 </DialogContent>
             </Dialog>

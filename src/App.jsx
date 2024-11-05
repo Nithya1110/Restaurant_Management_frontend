@@ -9,7 +9,7 @@ import Dashboard from './pages/dashboard';  // Import the Dashboard page
 import Orders from './pages/orders';  // Import the Orders page 
 import MenuManagement from './pages/menu_management';  // Import the Menu page 
 import LoginPage from './pages/login';
-import RegisterPage from './pages/register';
+import RegisterPage from './pages/register'; 
 
 function App() {
   const { mode, toggleTheme } = useThemeMode();  // Get the theme mode from custom hook

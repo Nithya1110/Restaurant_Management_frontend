@@ -64,7 +64,7 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     
     // Form validatin
-    const validateForm = () => {
+    const validateForm = () => { 
         let valid = true;
         const newErrors = { emailOrUsername: '', password: '',role_id: '' };
         const usernameRegex = /^[a-zA-Z0-9]+$/; // Allow alphanumeric characters only

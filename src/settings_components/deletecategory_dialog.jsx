@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Dialog, DialogTitle, DialogContent, DialogActions, Button,MenuItem, Select, InputLabel, FormControl, Snackbar, Typography} from '@mui/material';
+import {Dialog, DialogTitle, DialogContent, DialogActions,MenuItem, Select, InputLabel, FormControl, Snackbar, Typography} from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { getCategories, deleteCategory } from '../services/api';
+import CustomButton from '../elements_components/custom_button';
 
 export default function DeleteCategoryDialog({ open, onClose }) {
     const [categories, setCategories] = useState([]);
@@ -64,8 +65,8 @@ export default function DeleteCategoryDialog({ open, onClose }) {
                     </FormControl>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={onClose} color="secondary">Cancel</Button>
-                    <Button onClick={handleNext} color="primary" disabled={!selectedCategory}>Next</Button>
+                    <CustomButton onClick={onClose} color="secondary">Cancel</CustomButton>
+                    <CustomButton onClick={handleNext} color="primary" disabled={!selectedCategory}>Next</CustomButton>
                 </DialogActions>
             </Dialog>
 
@@ -78,8 +79,8 @@ export default function DeleteCategoryDialog({ open, onClose }) {
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => setOpenConfirmDialog(false)} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                    <Button onClick={handleDeleteCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Delete</Button>
+                    <CustomButton onClick={() => setOpenConfirmDialog(false)} sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                    <CustomButton onClick={handleDeleteCategory} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Delete</CustomButton>
                 </DialogActions>
             </Dialog>
 

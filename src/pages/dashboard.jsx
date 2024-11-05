@@ -1,11 +1,11 @@
 import { Box,Container,Typography,Grid2, Paper, } from '@mui/material';
-import OverviewCard from '../components/overview_card';
-import OrdersTable from '../components/orders_table';
-import OffersAccordion from '../components/offers_accordian';
-import TopSellingTabs from '../components/top_selling_tabs';
-import SalesBarChart from '../components/sales_bargraph';
-import CategoryPieChart from '../components/category_piechart';
-import CustomerFeedback from '../components/customer_feedback';
+import OverviewCard from '../dashboard_components/overview_card';
+import OrdersTable from '../dashboard_components/orders_table';
+import OffersAccordion from '../dashboard_components/offers_accordian';
+import TopSellingTabs from '../dashboard_components/top_selling_tabs';
+import SalesBarChart from '../dashboard_components/sales_bargraph';
+import CategoryPieChart from '../dashboard_components/category_piechart';
+import CustomerFeedback from '../dashboard_components/customer_feedback';
 
 export default function Dashboard() {  
     
@@ -74,7 +74,7 @@ export default function Dashboard() {
                   </Paper>   
                 </Grid2>
               </Grid2>
-            </Grid2>
+            </Grid2> 
           </Grid2>
         </Container>
       </Box>    

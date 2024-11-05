@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Card,CardContent,CardActions,Typography,Button, FormControlLabel,Switch} from '@mui/material';
+import { Card,CardContent,CardActions,Typography,FormControlLabel,Switch} from '@mui/material';
 import { updateMenuItem } from '../services/api';
+import CustomButton from '../elements_components/custom_button';
 
 export default function MenuCard ({item,onEdit,onDelete,isStaff}){  
     
@@ -52,22 +53,22 @@ export default function MenuCard ({item,onEdit,onDelete,isStaff}){
                 />    
             </CardContent>
             <CardActions>
-                <Button 
+                <CustomButton 
                 size='small'
                 sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}
                 onClick={onEdit}     
                 disabled={isStaff && item.category.id !== 1 } 
                 >    {/* Trigger edit dialog */}  
                    Edit
-                </Button>    
-                <Button 
+                </CustomButton>    
+                <CustomButton 
                 size='small'
                 sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}
                 onClick={onDelete}  
                 disabled={isStaff && item.category.id !== 1} 
                 >    {/*Open confirmation dialog*/}   
                     Delete
-                </Button>      
+                </CustomButton>      
             </CardActions>   
         </Card>
     );

@@ -40,7 +40,7 @@ export default function Sidebar({ isOpen }) {
                     '& .MuiDrawer-paper': {
                         width: isOpen ? 240 : 0,
                         boxSizing: 'border-box',
-                        boxShadow: 'none',
+                        boxShadow: 'none', 
                         backgroundColor: 'primary.main',
                         color: 'primary.contrastText',
                         marginTop: '64px',

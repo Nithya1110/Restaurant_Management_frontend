@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion,  AccordionSummary,  AccordionDetails,  Typography,  Box,  Button,  Dialog,  DialogActions,  DialogContent,  DialogContentText,  DialogTitle, Snackbar, TextField } from '@mui/material';
+import { Accordion,  AccordionSummary,  AccordionDetails,  Typography,  Box, Dialog,  DialogActions,  DialogContent,  DialogContentText,  DialogTitle, Snackbar, TextField } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MuiAlert from '@mui/material/Alert';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import CustomButton from '../elements_components/custom_button';
 
 const offers = [
     {
@@ -98,12 +99,12 @@ const OffersAccordion = () => {
                     <AccordionDetails>
                         <Typography>{offer.description}</Typography>
                         <QuiltedImageList images={offer.images} />
-                        <Button 
+                        <CustomButton
                             onClick={() => handleEditClick(offer)} disabled={isStaff} 
                             sx={{marginTop:2, backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}
                         >
                             Edit
-                        </Button>
+                        </CustomButton> 
                     </AccordionDetails>
                 </Accordion>
             ))}
@@ -127,7 +128,7 @@ const OffersAccordion = () => {
                         onChange={(e) => setCurrentOffer({ ...currentOffer, title: e.target.value })}
                     />
                     <TextField
-                        margin="dense"
+                        margin="dense" 
                         id="description"
                         label="Description"
                         type="text"
@@ -138,8 +139,8 @@ const OffersAccordion = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleDialogClose}  sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</Button>
-                    <Button onClick={handleSave} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</Button>
+                    <CustomButton onClick={handleDialogClose}  sx={{backgroundColor:'secondary.main',color:'black','&:hover':{backgroundColor:'secondary.dark',color:'white'}}}>Cancel</CustomButton>
+                    <CustomButton onClick={handleSave} sx={{backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}>Save</CustomButton>
                 </DialogActions>
             </Dialog>
 
