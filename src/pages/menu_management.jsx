@@ -56,10 +56,11 @@ export default function MenuManagement() {
     setDialogOpen(false); // Close the dialog  
   }; 
   // Function to handle item addition - async function that takes formData as an argument 
-  const handleAddItem = async (formData) => {
+  const handleAddItem = async (formData) => { 
     try {
-      await createMenuItem(formData);  // Send formData to the backend - This call is awaited, meaning the function will pause until the promise is resolved.
-      setMenuItems([...menuItems,formData]); // Update the menu items in the state - The spread operator (...menuItems) creates a new array containing all previous items and appends newItem to it.
+      await createMenuItem(formData);   // Send formData to the backend - This call is awaited, meaning the function will pause until the promise is resolved.
+      const response = await getMenuItem(); // Fetch the updated list from the backend
+      setMenuItems(response.data);         // Set the updated list in the state
       setOpenSnackbar(true);
       handleCloseDialog(); // Close the dialog
     } catch (error) {
@@ -70,8 +71,9 @@ export default function MenuManagement() {
    // Function to handle item updating - async function that takes formData and id as an argument 
   const handleUpdateItem = async(id,formData) => {
     try {
-      await updateMenuItem(id,formData);  // Send formData to the backend based on the correct id 
-      setMenuItems(menuItems.map((item)=>(item.id === id ? {...formData,id} : item))); // Update the menu items in the state based on item id 
+      await updateMenuItem(id, formData);  // Send formData to the backend based on the correct id 
+      const response = await getMenuItem(); // Fetch the updated list from the backend
+      setMenuItems(response.data);   // Set the updated list in the state 
       handleCloseDialog();  // Close the dialog
     } catch (error) {
       console.error('Error updating item :',error);  // Handle any errors  

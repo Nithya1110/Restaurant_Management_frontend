@@ -41,7 +41,7 @@ export default function AddItemDialog ({open,onClose,categories,initialData,isSt
         // The [name]: value syntax dynamically updates the correct field.   
         
     // Validation function
-    const validateForm = () => {
+    const validateForm = () => { 
         const newErrors = {}; 
         if(!formData.name) newErrors.name =  'Name is required';
         if (!formData.description) newErrors.description = 'Description is required';

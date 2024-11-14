@@ -49,7 +49,7 @@ export default function MenuCard ({item,onEdit,onDelete,isStaff}){
                       onChange={handleToggle}      // Call handler on change
                     />        
                    }      
-                   label = {item.available ? 'Available':'Out of stock'}   
+                   label = {available ? 'Available':'Out of stock'}   
                 />    
             </CardContent>
             <CardActions>
