@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box,Typography,Button,TextField, FormControlLabel,Link,Checkbox,IconButton, MenuItem, InputAdornment } from '@mui/material'; 
+import { Box,Typography,Button,TextField, FormControlLabel,Link,Checkbox,IconButton, InputAdornment } from '@mui/material'; 
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff'; 
+import { loginUser } from '../services/api';
 
 // Gradient Background for the entire page  
 const PageContainer = styled(Box) ({
@@ -59,25 +60,15 @@ const StyledImage = styled('img')({
 
 export default function LoginPage() { 
     const navigate = useNavigate(); // React Router navigation
-    const [formData,setFormData] = useState({ emailOrUsername: '', password: '', rememberMe: false, role: '', role_id: '' });
-    const [errors,setErrors] = useState({emailOrUsername: '', password: '',role_id: ''});
+    const [formData,setFormData] = useState({role_id: '' , password: '', rememberMe: false}); 
+    const [errors,setErrors] = useState({role_id: '' , password: ''});
     const [showPassword, setShowPassword] = useState(false);
     
     // Form validatin
     const validateForm = () => { 
         let valid = true;
-        const newErrors = { emailOrUsername: '', password: '',role_id: '' };
-        const usernameRegex = /^[a-zA-Z0-9]+$/; // Allow alphanumeric characters only
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
+        const newErrors = {role_id: '' , password: ''};
         const role_idFormat = /^\d+$/; // valid number 
-        if(!formData.emailOrUsername){
-            newErrors.emailOrUsername = 'Username or email is required.';
-            valid = false;
-        }
-        else if (!usernameRegex.test(formData.emailOrUsername) && !emailRegex.test(formData.emailOrUsername) ) {
-            newErrors.emailOrUsername = 'Invalid input. Please enter a valid username (alphanumeric only) or a valid email address.';
-            valid = false;
-        }
         if (!formData.password) {
             newErrors.password = 'Password is required.';
             valid = false;
@@ -99,9 +90,6 @@ export default function LoginPage() {
         const {name,value} = e.target;
         setFormData({...formData,[name]:value});
     };
-    const handleRoleChange = (e) => {
-        setFormData({ ...formData, role: e.target.value, roleId: '' }); // Reset roleId on role change
-    };
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -110,28 +98,42 @@ export default function LoginPage() {
         setFormData({ ...formData, rememberMe: e.target.checked });
     };
     // Handle form submission
-    const handleSubmit = (e) => { 
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = {
-            emailOrUsername: formData.emailOrUsername,
-            role: formData.role,
-            role_id: formData.role_id,
-            rememberMe: formData.rememberMe,
-        };
-        if (formData.rememberMe) {
-            // Persist the user data across sessions if "Remember Me" is checked
-            localStorage.setItem('user', JSON.stringify(user));
-        } else {
-            // Store user data in sessionStorage only for this session
-            sessionStorage.setItem('user', JSON.stringify(user));
-            // Ensure previous persistent data is removed from localStorage 
-            localStorage.removeItem('user');
-        } 
+
         if (validateForm()) {
-            alert(`Login Successful!\nUsername/Email: ${formData.emailOrUsername}`);
-            navigate('/home_dashboard')
-        }  
-    }
+            try {
+                const payload = {
+                    role_id: formData.role_id,
+                    password: formData.password,
+                };
+
+                const response = await loginUser(payload);
+
+                if (response.status === 200) {
+                    const user = response.data.user;
+
+                    if (formData.rememberMe) {
+                        localStorage.setItem('user', JSON.stringify(user));
+                    } else {
+                        sessionStorage.setItem('user', JSON.stringify(user));
+                        localStorage.removeItem('user');
+                    }
+
+                    alert('Login Successful!');
+                    navigate('/home_dashboard');
+                }
+            } catch (error) {
+                if (error.response?.status === 400) {
+                    alert('Invalid password!');
+                } else if (error.response?.status === 404) {
+                    alert('User not found!');
+                } else {
+                    alert('An error occurred during login.');
+                }
+            }
+        }
+    };
 
     return(
         <PageContainer>
@@ -142,107 +144,37 @@ export default function LoginPage() {
                         Login
                     </Typography> 
                     <Box component='form' onSubmit={handleSubmit} sx={{width:'100%',maxWidth:400}}>
-                        <TextField
-                        fullWidth
-                        label="Who's logging in ?"
-                        name="role"
-                        value={formData.role}
-                        onChange={handleRoleChange}
-                        required
-                        select
-                        margin="normal"
-                        variant="outlined"
-                        InputLabelProps={{
-                            style: { color: 'black' },
-                        }}
-                        InputProps={{
-                            style: { color: 'black' },
-                        }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '& .MuiSelect-select': { color: 'black' }, //  black color for selected text
-                                '& fieldset': {
-                                    borderColor: '#CCCCCC',  // Default light gray border
+                    <TextField
+                            fullWidth
+                            label="Enter ID"
+                            name="role_id"
+                            value={formData.role_id}
+                            onChange={handleInputChange}
+                            required
+                            error={!!errors.role_id}
+                            helperText={errors.role_id}
+                            margin="normal"
+                            variant="outlined"
+                            InputLabelProps={{
+                                style: { color: 'black' },
+                            }}
+                            InputProps={{
+                                style: { color: 'black' },
+                            }}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: '#CCCCCC',
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: '#1976D2',
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: '#1976D2',
+                                        borderWidth: '2px',
+                                    },
                                 },
-                                '&:hover fieldset': {
-                                    borderColor: '#1976D2',  // Blue border on hover
-                                },
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#1976D2',  // Blue border when focused
-                                    borderWidth: '2px',       // Thicker border on focus
-                                },
-                            },
-                        }}
-                        >
-                        <MenuItem value="admin">Admin</MenuItem>
-                        <MenuItem value="staff">Staff</MenuItem>
-                        </TextField>
-                        {/* Conditional ID Field based on Role */}
-                        {formData.role && (
-                        <TextField
-                        fullWidth
-                        label={formData.role === 'admin' ? 'Enter Admin ID' : 'Enter Staff ID'}
-                        name="role_id"
-                        value={formData.role_id}
-                        onChange={handleInputChange}
-                        required
-                        margin="normal"
-                        variant="outlined"
-                        error={!!errors.role_id}
-                        helperText={errors.role_id}
-                        InputLabelProps={{
-                            style: { color: 'black' },
-                        }}
-                        InputProps={{
-                            style: { color: 'black' },
-                        }}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                    borderColor: '#CCCCCC',  // Default light gray border
-                                },
-                                '&:hover fieldset': {
-                                    borderColor: '#1976D2',  // Blue border on hover
-                                },
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#1976D2',  // Blue border when focused
-                                    borderWidth: '2px',       // Thicker border on focus
-                                },
-                            },
-                        }}
-                        />
-                        )}
-                        <TextField
-                          fullWidth
-                          label="Username or Email"
-                          name="emailOrUsername"
-                          value={formData.emailOrUsername}
-                          onChange={handleInputChange}
-                          required
-                          error={!!errors.emailOrUsername}
-                          helperText={errors.emailOrUsername}
-                          margin="normal"
-                          variant="outlined"
-                          InputLabelProps={{
-                            style: { color: 'black' },
-                          }}
-                          InputProps={{
-                            style: { color: 'black' },
-                          }}
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                    borderColor: '#CCCCCC',  // Default light gray border
-                                },
-                                '&:hover fieldset': {
-                                    borderColor: '#1976D2',  // Blue border on hover
-                                },
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#1976D2',  // Blue border when focused
-                                    borderWidth: '2px',       // Thicker border on focus
-                                },
-                            },
-                        }}
+                            }}
                         />
                         <TextField
                           fullWidth 

@@ -29,17 +29,21 @@ export default function Header({toggleSidebar,toggleTheme,mode}){
     const [openSnackbar, setOpenSnackbar] = useState(false); // State for snackbar visibility
     const navigate = useNavigate(); // Initialize useNavigate for redirection
 
-    useEffect(()=>{
+    useEffect(() => {
+        // Get user data from sessionStorage or localStorage
         const user = JSON.parse(sessionStorage.getItem('user') || localStorage.getItem('user'));
-        if (user) {
-            const initials = user.emailOrUsername
-                .split(' ')
-                .map(name=>name[0])
-                .join('')
-                .toUpperCase();
-            setUserInitials(initials);
+
+        if (user && user.username) {
+            // Extract the first two letters of the username
+            const initials = user.username
+                .slice(0, 2) // Get the first two characters
+                .toUpperCase(); // Convert to uppercase
+
+            setUserInitials(initials); // Set initials state
+        } else {
+            console.warn('No valid username found in storage.');
         }
-    },[]);
+    }, []); 
 
     // Open Popover - notification
     const handleOpenPopover = (event) => {

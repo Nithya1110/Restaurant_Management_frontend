@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import SettingsDialog from './settings_dialog';
 
 export default function Sidebar({ isOpen }) {
-    const [openSettingsDialog, setOpenSettingsDialog] = useState(false);
-    // State to track whether settings should be disabled
-    const [isSettingsDisabled, setIsSettingsDisabled] = useState(false);
+    const [openSettingsDialog, setOpenSettingsDialog] = useState(false); 
+    const [showSettingsOption, setShowSettingsOption] = useState(true); // State to control visibility of Settings
 
     useEffect(() => {
         // Check sessionStorage and localStorage for the user data
@@ -15,20 +14,19 @@ export default function Sidebar({ isOpen }) {
         try {
             user = JSON.parse(sessionStorage.getItem('user')) || JSON.parse(localStorage.getItem('user'));
         } catch (error) {
+            console.error('Error parsing user data from storage:', error);
         }
 
-        // If user is logged in and role is 'staff', disable the settings option
+        // If user is logged in and role is 'staff', hide the settings option
         if (user && user.role === 'staff') {
-            setIsSettingsDisabled(true);
+            setShowSettingsOption(false);
         } else {
-            setIsSettingsDisabled(false);
+            setShowSettingsOption(true);
         }
-    }, []); 
+    }, []);
 
     // Function to handle settings dialog open and close
-    const handleOpenSettings = () =>{
-         isSettingsDisabled ? setOpenSettingsDialog(false) : setOpenSettingsDialog(true) ;
-    }     
+    const handleOpenSettings = () => setOpenSettingsDialog(true);   
     const handleCloseSettings = () => setOpenSettingsDialog(false);
 
     return (
@@ -75,12 +73,14 @@ export default function Sidebar({ isOpen }) {
                         <ListItemIcon sx={{ color: 'primary.contrastText' }}><RestaurantMenu /></ListItemIcon>
                         <ListItemText primary='Menu Management' />
                     </ListItem>
-                    {/* Settings Link - Opens Settings Dialog */}
-                    <ListItem button onClick={handleOpenSettings} disabled={isSettingsDisabled}
-                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'secondary.main' }, marginBottom: '10px' }}>
-                        <ListItemIcon sx={{ color: 'primary.contrastText' }}><Settings /></ListItemIcon>
-                        <ListItemText primary='Settings' />
-                    </ListItem> 
+                    {/* Settings Link - Only show if allowed */}
+                    {showSettingsOption && (
+                        <ListItem button onClick={handleOpenSettings}
+                            sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'secondary.main' }, marginBottom: '10px' }}>
+                            <ListItemIcon sx={{ color: 'primary.contrastText' }}><Settings /></ListItemIcon>
+                            <ListItemText primary='Settings' />
+                        </ListItem>
+                    )}
                 </List>
             </Drawer>
 

@@ -3,53 +3,41 @@ import {Dialog, DialogTitle,DialogContent,DialogActions, TextField, MenuItem, In
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import CustomButton from '../elements/custom_button';
 import MuiAlert from '@mui/material/Alert';
-import { getUsersByRole,updateUserDetails } from '../../services/api';
+import { updateUserDetails } from '../../services/api';
 
 export default function ManageAccountDialog({ open, onClose }) {
-  const [user, setUser] = useState(null);   // Define user state with its setter  
-  const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        contact: '',
-        role: '',
-        role_id: 'null',
-        password: '',
-  });
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [user, setUser] = useState(null);   // Define user state with its setter  
+    const [formData, setFormData] = useState({
+            username: '',
+            email: '',
+            contact: '', 
+            role: '',
+            role_id: 'null',
+            password: '',
+    });
+    const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  useEffect(() => {
-    // Fetch user from local or session storage
-    const storedUser = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'));
+
         if (storedUser) {
-            setUser(storedUser);  // Set user if available
-            fetchUserData(storedUser.role_id); // Fetch details using role_id
+            setUser(storedUser); // Set user if available
+            // Prefill form data from storedUser
+            setFormData({
+                username: storedUser.username || '',
+                email: storedUser.email || '',
+                contact: storedUser.contact || '',
+                role: storedUser.role || '',
+                role_id: storedUser.role_id || null,
+                password: '', // Keep password field empty
+            });
         } else {
-            console.error("User data not available in storage.");
+            console.error('User data not available in storage.');
         }
     }, []);
-
-    // Fetch user details based on role_id
-    const fetchUserData = async (roleId) => {
-        try {
-            const response = await getUsersByRole(roleId);
-            if (response.data && response.data.length > 0) {
-                const userData = response.data[0];
-                setFormData({
-                    username: userData.username || '',
-                    email: userData.email || '',
-                    contact: userData.contact || '',
-                    role: userData.role || '',
-                    role_id: userData.role_id || null,
-                    password: ''  // Leave password blank
-                });
-            }
-        } catch (error) {
-            console.error("Error fetching user details:", error);
-        }
-    };
 
     // Validation functions 
     const validateUsername = (username) => /^[a-zA-Z0-9]+$/.test(username);

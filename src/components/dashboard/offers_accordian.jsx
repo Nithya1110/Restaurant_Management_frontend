@@ -99,12 +99,15 @@ const OffersAccordion = () => {
                     <AccordionDetails>
                         <Typography>{offer.description}</Typography>
                         <QuiltedImageList images={offer.images} />
-                        <CustomButton
-                            onClick={() => handleEditClick(offer)} disabled={isStaff} 
-                            sx={{marginTop:2, backgroundColor:'primary.main',color:'black','&:hover':{backgroundColor:'primary.dark',color:'white'}}}
-                        >
-                            Edit
-                        </CustomButton> 
+                        {/* Conditionally render the Edit button */}
+                        {!isStaff && (
+                            <CustomButton
+                                onClick={() => handleEditClick(offer)}
+                                sx={{ marginTop: 2, backgroundColor: 'primary.main', color: 'black', '&:hover': { backgroundColor: 'primary.dark', color: 'white' } }}
+                            >
+                                Edit
+                            </CustomButton>
+                        )}
                     </AccordionDetails>
                 </Accordion>
             ))}
